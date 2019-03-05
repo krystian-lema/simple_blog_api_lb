@@ -1,20 +1,38 @@
-module.exports = function (app) {
-    'use strict'
-    var dataSource = app.dataSources.postgres;
+'use strict';
 
-    console.log('-- Models found:', Object.keys(app.models));
-
-    for (var model in app.models) {
-        console.log("Cheking if table for model " + model + " is created and up-to-date in DB...");
-        dataSource.isActual(model, function (err, actual) {
-            if (actual) {
-                console.log("Model " + model + " is up-to-date. No auto-migrated.");
-            } else {
-                console.log('Difference found! Auto-migrating model ' + model + '...');
-                dataSource.autoupdate(model, function () {
-                    console.log("Auto-migrated model " + model + " successfully.");
-                });
-            }
-        });
-    }
+// Update (or create) database schema (https://loopback.io/doc/en/lb3/Creating-a-database-schema-from-models.html)
+// This is effectively a no-op for the memory connector
+module.exports = function(app, cb) {
+  updateDatabaseSchema(app).then(() => {
+    process.nextTick(cb);
+  });
 };
+
+async function updateDatabaseSchema(app) {
+  let datastore = app.datasources.postgres;
+
+  for (let model of app.models()) {
+    if (await doesModelNeedUpdate(datastore, model.modelName) === true) {
+      await updateSchemaForModel(datastore, model.modelName);
+    }
+  }
+}
+
+function doesModelNeedUpdate(datastore, model) {
+  return new Promise((resolve, reject) => {
+    datastore.isActual(model, (err, actual) => {
+      if (err) reject(err);
+      resolve(!actual);
+    });
+  });
+}
+
+function updateSchemaForModel(datastore, model) {
+  return new Promise((resolve, reject) => {
+    datastore.autoupdate(model, (err, result) => {
+      if (err) reject(err);
+      console.log(`Autoupdate performed for model ${model}`);
+      resolve();
+    });
+  });
+}
