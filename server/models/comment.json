@@ -16,7 +16,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "article": {
+      "type": "belongsTo",
+      "model": "Article",
+      "foreignKey": "article_id"
+    }
+  },
   "acls": [],
   "methods": {}
 }

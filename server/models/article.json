@@ -16,7 +16,23 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "author": {
+      "type": "belongsTo",
+      "model": "Author",
+      "foreignKey": "author_id"
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "Comment",
+      "foreignKey": ""
+    },
+    "tags": {
+      "type": "hasMany",
+      "model": "Tag",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
