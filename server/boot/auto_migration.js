@@ -1,6 +1,6 @@
 module.exports = function (app) {
     'use strict'
-        var dataSource = app.dataSources.db_source;
+    var dataSource = app.dataSources.postgres;
 
     console.log('-- Models found:', Object.keys(app.models));
 

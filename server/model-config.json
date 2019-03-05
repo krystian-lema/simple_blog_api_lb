@@ -13,19 +13,19 @@
       "./mixins"
     ]
   },
-  "author": {
+  "Author": {
     "dataSource": "postgres",
     "public": true
   },
-  "article": {
+  "Article": {
     "dataSource": "postgres",
     "public": true
   },
-  "comment": {
+  "Comment": {
     "dataSource": "postgres",
     "public": true
   },
-  "tag": {
+  "Tag": {
     "dataSource": "postgres",
     "public": true
   }
