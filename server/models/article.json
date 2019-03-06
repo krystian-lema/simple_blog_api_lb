@@ -34,5 +34,24 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "include_all_data": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "List of articles with all other models data included."
+        }
+      ],
+      "description": "Include all data from other models.",
+      "http": [
+        {
+          "path": "/include_all_data",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
