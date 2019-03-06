@@ -2,6 +2,9 @@
   "name": "Comment",
   "base": "PersistedModel",
   "idInjection": true,
+  "http": {
+    "path": "/comments"
+  },
   "options": {
     "validateUpsert": true
   },

@@ -2,6 +2,9 @@
   "name": "Author",
   "base": "PersistedModel",
   "idInjection": true,
+  "http": {
+    "path": "/authors"
+  },
   "options": {
     "validateUpsert": true
   },
