@@ -12,6 +12,12 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "articleId": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "article_id"
+      }
     }
   },
   "validations": [],
@@ -19,7 +25,7 @@
     "article": {
       "type": "belongsTo",
       "model": "Article",
-      "foreignKey": "article_id"
+      "foreignKey": "articleId"
     }
   },
   "acls": [],

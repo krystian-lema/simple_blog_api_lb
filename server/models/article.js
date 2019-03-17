@@ -1,6 +1,20 @@
 'use strict';
 
+
 module.exports = function(Article) {
+
+    Article.observe('before save', function parse_author_id(ctx, next) {
+        if (ctx.instance) {
+            if (ctx.instance.author_id) {
+                ctx.instance.authorId = ctx.instance.author_id;
+            }
+        } else {
+            if (ctx.data.author_id) {
+                ctx.data.authorId = ctx.data.author_id;
+            }
+        }
+        next();
+    });
 
     /**
      * Include all data from other models.

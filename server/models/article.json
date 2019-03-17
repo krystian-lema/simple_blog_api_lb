@@ -16,6 +16,12 @@
     "content": {
       "type": "string",
       "required": true
+    },
+    "authorId": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "author_id"
+      }
     }
   },
   "validations": [],
@@ -23,7 +29,7 @@
     "author": {
       "type": "belongsTo",
       "model": "Author",
-      "foreignKey": "author_id"
+      "foreignKey": "authorId"
     },
     "comments": {
       "type": "hasMany",
